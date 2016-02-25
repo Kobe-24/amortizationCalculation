@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculationLib
 {
-    public class Class1
+    interface ILoanCalculator
     {
     }
 }

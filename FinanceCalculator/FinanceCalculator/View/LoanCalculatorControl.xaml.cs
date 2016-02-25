@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FinanceCalculator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoanCalculatorControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoanCalculatorControl : UserControl
     {
-        public MainWindow()
+        public LoanCalculatorControl()
         {
             InitializeComponent();
         }

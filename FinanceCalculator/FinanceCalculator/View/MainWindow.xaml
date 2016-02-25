@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinanceCalculator"
+        xmlns:controls="clr-namespace:FinanceCalculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Finance Calculator" Height="950.895" Width="1466.486"
+        >
     <Grid>
-        
+        <controls:LoanCalculatorControl Margin="10"/>
     </Grid>
 </Window>

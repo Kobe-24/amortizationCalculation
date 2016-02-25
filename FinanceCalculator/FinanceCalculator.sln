@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceCalculator", "FinanceCalculator\FinanceCalculator.csproj", "{04CFA0CE-933A-4DC0-8A73-63B0FC6F1C7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculationLib", "CalculationLib\CalculationLib.csproj", "{E4F0B0F9-6B41-405E-B681-565E522C539E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculationLibUnittests", "CalculationLibUnittests\CalculationLibUnittests.csproj", "{17D141E0-7C5F-43C7-A825-793E03596576}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{04CFA0CE-933A-4DC0-8A73-63B0FC6F1C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04CFA0CE-933A-4DC0-8A73-63B0FC6F1C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04CFA0CE-933A-4DC0-8A73-63B0FC6F1C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F0B0F9-6B41-405E-B681-565E522C539E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F0B0F9-6B41-405E-B681-565E522C539E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F0B0F9-6B41-405E-B681-565E522C539E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F0B0F9-6B41-405E-B681-565E522C539E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17D141E0-7C5F-43C7-A825-793E03596576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17D141E0-7C5F-43C7-A825-793E03596576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17D141E0-7C5F-43C7-A825-793E03596576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17D141E0-7C5F-43C7-A825-793E03596576}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

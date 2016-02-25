@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="FinanceCalculator.LoanCalculatorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FinanceCalculator"
+             xmlns:converters="clr-namespace:FinanceCalculator.Converters"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             >
+    <UserControl.Resources>
+        <converters:DecimalPercentageConverter x:Key="DecimalPercentageConverter" />
+    </UserControl.Resources>
+    <Grid>
+    <StackPanel>
+        <Label>Input:</Label>
+        <GroupBox x:Name="groupBox" Header="Amortization Model" HorizontalAlignment="Left" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Tiers:"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Level 1:"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Content="Level 2:"></Label>
+                
+                <Label Grid.Row="0" Grid.Column="1" Content="Amortize down to:"  HorizontalContentAlignment="Right" HorizontalAlignment="Right"></Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="Level1" Margin="5" Height="Auto" HorizontalContentAlignment="Right" Width="50" HorizontalAlignment="Right" Text="{Binding Path=Level1, ValidatesOnDataErrors=True,StringFormat=P0, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DecimalPercentageConverter}}"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="Level2" Margin="5" HorizontalContentAlignment="Right" Width="50" HorizontalAlignment="Right" Text="{Binding Path=Level2, StringFormat=P0, ValidatesOnDataErrors=True,Converter={StaticResource DecimalPercentageConverter},UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                <Label Grid.Row="0" Grid.Column="2" Content="Amortization amount:"  HorizontalContentAlignment="Right" HorizontalAlignment="Right"></Label>
+                <TextBox Grid.Row="1" Grid.Column="2" Name="AmortizationAmount1" Margin="5" HorizontalContentAlignment="Right" Width="50" HorizontalAlignment="Right" Text="{Binding Path=AmortizationPerYearLevel1, StringFormat=P0, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,Converter={StaticResource DecimalPercentageConverter}}"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="2" Name="AmortizationAmount2" Margin="5" HorizontalContentAlignment="Right" Width="50" HorizontalAlignment="Right" Text="{Binding Path=AmortizationPerYearLevel2, StringFormat=P0, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True,Converter={StaticResource DecimalPercentageConverter}}"></TextBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="groupBox2" Header="Loan and Capital" HorizontalAlignment="Left" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Interest:"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Interest deduction:"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Content="Loan:"></Label>
+                <Label Grid.Row="3" Grid.Column="0" Content="Capital:"></Label>
+
+                <TextBox Grid.Row="0" Grid.Column="1" Name="Interest" Margin="5" Height="Auto" HorizontalContentAlignment="Right" Width="50" HorizontalAlignment="Right" Text="{Binding Path=Interest, StringFormat=P0, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True,Converter={StaticResource DecimalPercentageConverter}}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="InterestDeduction" Margin="5" HorizontalContentAlignment="Right" Width="50" HorizontalAlignment="Right" Text="{Binding Path=InterestDeduction, StringFormat=P0, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True,Converter={StaticResource DecimalPercentageConverter}}"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="Loan" Margin="5" Height="Auto" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=LoanSize, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" Name="Capital" Margin="5" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=OwnCapital, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            </Grid>
+        </GroupBox>
+        <!--<Button Content="Compute" Margin="20,10,10,2" HorizontalAlignment="Left" Width="141" Height="23"></Button>-->
+        <Label Margin="2,60,2,2">Output:</Label>
+        <GroupBox x:Name="groupBox3" Header="Monthly costs to get down to level 1" HorizontalAlignment="Left" Margin="2,2,2,2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Period:"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Total monthly cost:"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Content="Amortization cost:"></Label>
+                <Label Grid.Row="3" Grid.Column="0" Content="Interest cost:"></Label>
+
+                <TextBox IsReadOnly = "True" Grid.Row="0" Grid.Column="1" Name="Period1" Margin="5" Height="Auto" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=Period1, Mode=OneWay, StringFormat=yyyy-MM-dd}"></TextBox>
+                <TextBox IsReadOnly = "True"  Grid.Row="1" Grid.Column="1" Name="Total1" Margin="5" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=Total1, Mode=OneWay, StringFormat=N0 }"></TextBox>
+                <TextBox IsReadOnly = "True"  Grid.Row="2" Grid.Column="1" Name="AmortCost1" Margin="5" Height="Auto" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=AmortCost1, Mode=OneWay, StringFormat=N0 }"></TextBox>
+                <TextBox  IsReadOnly = "True" Grid.Row="3" Grid.Column="1" Name="InterestCost1" Margin="5" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=InterestCost1, Mode=OneWay, StringFormat=N0 }"></TextBox>
+
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="groupBox4" Header="Monthly costs when going from level 1 to level 2" HorizontalAlignment="Left" Margin="2,2,2,2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Period:"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Total monthly cost:"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Content="Amortization cost:"></Label>
+                <Label Grid.Row="3" Grid.Column="0" Content="Interest cost:"></Label>
+
+                <TextBox  IsReadOnly = "True" Grid.Row="0" Grid.Column="1" Name="Period2" Margin="5" Height="Auto" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=Period2, Mode=OneWay, StringFormat=yyyy-MM-dd}"></TextBox>
+                <TextBox  IsReadOnly = "True" Grid.Row="1" Grid.Column="1" Name="Total2" Margin="5" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=Total2, Mode=OneWay, StringFormat=N0}"></TextBox>
+                <TextBox  IsReadOnly = "True" Grid.Row="2" Grid.Column="1" Name="AmortCost2" Margin="5" Height="Auto" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=AmortCost2, Mode=OneWay, StringFormat=N0}"></TextBox>
+                <TextBox  IsReadOnly = "True" Grid.Row="3" Grid.Column="1" Name="InterestCost2" Margin="5" HorizontalContentAlignment="Right" Width="90" HorizontalAlignment="Right" Text="{Binding Path=InterestCost2, Mode=OneWay, StringFormat=N0 }"></TextBox>
+
+            </Grid>
+        </GroupBox>
+
+    </StackPanel>
+        <StackPanel Grid.Column="1">
+            <oxy:Plot Title="Payments down to Level 2" Width="400" Height="300">
+                <oxy:Plot.Series>
+                    <oxy:LineSeries ItemsSource="{Binding Points}"/>
+                </oxy:Plot.Series>
+            </oxy:Plot>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,12 @@
+# If you're not using git, you can ignore this file
+*~
+*.suo
+*.user
+bin
+obj
+_ReSharper.*
+TestResult.xml
+app.debug.config
+*.dll
+*.exe
+*.pdb
